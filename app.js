@@ -12,6 +12,9 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const torrent_routes = require("./routes/torrent-routes");
 
+const cors = require('cors');
+
+
 const app = express();
 
 // view engine setup
@@ -26,10 +29,10 @@ const swaggerOptions = {
     info: {
       title: "torrent-api",
       description:
-        "This is REST API application that scrapes various torrent providers and makes result available in json format through end-points, Basically Developed as part of  MovieBunkers Application",
+        "This is REST API application that scrapes various torrent providers and makes result available in json format through end-points",
       version: "1.0.2",
       contact: {
-        name: "charan379",
+        name: "Aryan Sharma",
         url: "#",
       },
       license: {
@@ -55,6 +58,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(stylus.middleware(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(cors({
+  origin: '*'
+}));
 
 // routes
 app.use("/", indexRouter);
